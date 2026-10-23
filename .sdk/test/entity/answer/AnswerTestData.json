@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "answer": {
+      "ANSWER00": {
+        "answer": "s3c",
+        "date": "s3d",
+        "day_name": "s3e",
+        "difficulty": 63,
+        "editor": "s40",
+        "game": 65,
+        "id": "ANSWER00"
+      },
+      "ANSWER01": {
+        "answer": "s78",
+        "date": "s79",
+        "day_name": "s7a",
+        "difficulty": 123,
+        "editor": "s7c",
+        "game": 125,
+        "id": "ANSWER01"
+      },
+      "ANSWER02": {
+        "answer": "sb4",
+        "date": "sb5",
+        "day_name": "sb6",
+        "difficulty": 183,
+        "editor": "sb8",
+        "game": 185,
+        "id": "ANSWER02"
+      }
+    }
+  },
+  "new": {
+    "answer": {
+      "answer_ref01": {
+        "answer": "sf0",
+        "date": "sf1",
+        "day_name": "sf2",
+        "difficulty": 243,
+        "editor": "sf4",
+        "game": 245
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/wordle/answers": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/wordle/answers/latest": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

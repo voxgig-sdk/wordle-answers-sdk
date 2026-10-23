@@ -1,0 +1,198 @@
+# Entity: answer
+
+main: kit: entity: answer: {
+
+  alias: field: {}
+
+  fields: {
+    answer: {
+      h: "Answer"
+      n: "answer"
+      r: false
+      sh: "The solution word, uppercase"
+      t: "`$STRING`"
+    }
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      sh: "Puzzle date (YYYY-MM-DD)"
+      t: "`$STRING`"
+    }
+    day_name: {
+      h: "Day Name"
+      n: "day_name"
+      r: false
+      sh: "Weekday name"
+      t: "`$STRING`"
+    }
+    difficulty: {
+      h: "Difficulty"
+      n: "difficulty"
+      r: false
+      sh: "Difficulty rating from 1 to 5, one decimal"
+      t: "`$NUMBER`"
+    }
+    editor: {
+      h: "Editor"
+      n: "editor"
+      r: false
+      sh: "Editorial attribution"
+      t: "`$STRING`"
+    }
+    game: {
+      h: "Game"
+      n: "game"
+      r: false
+      sh: "Wordle game number"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "answer"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/wordle/answers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "answer"
+                or: "answer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "from"
+                or: "from"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "game"
+                or: "game"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "order"
+                or: "order"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "to"
+                or: "to"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/wordle/answers"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "wordle"
+            }
+            {
+              lit: "answers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/wordle/answers/latest"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/wordle/answers/latest"
+          q: {
+            "$action": "latest"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "wordle"
+            }
+            {
+              lit: "answers"
+            }
+            {
+              lit: "latest"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

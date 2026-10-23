@@ -1,0 +1,40 @@
+# BasicAnswerFlow
+
+main: kit: flow: BasicAnswerFlow:
+{
+  entity: "answer",
+  kind: "basic",
+  name: "BasicAnswerFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "answer_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "answer_ref01",
+        srcdatavar: "answer_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-answer_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAnswerFlow"
+}

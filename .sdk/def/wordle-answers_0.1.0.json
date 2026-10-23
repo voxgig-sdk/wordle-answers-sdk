@@ -1,0 +1,315 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Wordle Answers API",
+    "description": "Historical and current NYT Wordle answers with difficulty ratings and progressive hints. Public, unauthenticated, HTTPS GET only. Answers sync at midnight America/New_York; dates beyond today return 403.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://wordlehintstoday.org/wordle-api"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://wordlehintstoday.org",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/v1/wordle/answers/latest": {
+      "get": {
+        "summary": "Get the latest Wordle answer",
+        "description": "Returns the most recent NYT Wordle answer. Cached for 1 hour.",
+        "operationId": "getLatestAnswer",
+        "responses": {
+          "200": {
+            "description": "The most recent answer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                },
+                "example": {
+                  "game": 1506,
+                  "date": "2026-08-02",
+                  "day_name": "Sunday",
+                  "editor": "Wordle Hints Today Editorial Team",
+                  "answer": "GLOBE",
+                  "difficulty": 3.8
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wordle/answers": {
+      "get": {
+        "summary": "List historical Wordle answers",
+        "description": "Returns historical answers with filtering, sorting and pagination. Cached for 24 hours.",
+        "operationId": "listAnswers",
+        "parameters": [
+          {
+            "name": "game",
+            "in": "query",
+            "description": "Exact game number",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Exact date (YYYY-MM-DD)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Range start date (YYYY-MM-DD)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Range end date (YYYY-MM-DD)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "answer",
+            "in": "query",
+            "description": "Search by answer word",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort direction",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "1-based page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Results per page (1-200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of answers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerPage"
+                },
+                "example": {
+                  "source": "wordlehintstoday.org",
+                  "version": "1.0",
+                  "count": 50,
+                  "total": 1506,
+                  "page": 1,
+                  "per_page": 50,
+                  "has_more": true,
+                  "results": [
+                    {
+                      "game": 1506,
+                      "date": "2026-08-02",
+                      "day_name": "Sunday",
+                      "editor": "Wordle Hints Today Editorial Team",
+                      "answer": "GLOBE",
+                      "difficulty": 3.8
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Requested date is in the future"
+          }
+        }
+      }
+    },
+    "/api/v1/wordle/today": {
+      "get": {
+        "summary": "Get today's answer with hints",
+        "description": "Returns today's solution together with progressive hint levels (category, letter count, first letter, definition, answer). Cached for 1 hour.",
+        "operationId": "getToday",
+        "responses": {
+          "200": {
+            "description": "Today's answer and hints",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Today"
+                },
+                "example": {
+                  "game": 1506,
+                  "date": "2026-08-02",
+                  "day_name": "Sunday",
+                  "editor": "Wordle Hints Today Editorial Team",
+                  "answer": "GLOBE",
+                  "difficulty": 3.8,
+                  "hints": {
+                    "category": "Objects",
+                    "letters": 5,
+                    "first_letter": "G",
+                    "definition": "A spherical representation of the earth."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Answer": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "integer",
+            "description": "Wordle game number"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Puzzle date (YYYY-MM-DD)"
+          },
+          "day_name": {
+            "type": "string",
+            "description": "Weekday name"
+          },
+          "editor": {
+            "type": "string",
+            "description": "Editorial attribution"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The solution word, uppercase"
+          },
+          "difficulty": {
+            "type": "number",
+            "description": "Difficulty rating from 1 to 5, one decimal"
+          }
+        }
+      },
+      "AnswerPage": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of results on this page"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total matching results"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "per_page": {
+            "type": "integer"
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Answer"
+            }
+          }
+        }
+      },
+      "Today": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "day_name": {
+            "type": "string"
+          },
+          "editor": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "number"
+          },
+          "hints": {
+            "type": "object",
+            "description": "Progressive hint levels",
+            "properties": {
+              "category": {
+                "type": "string"
+              },
+              "letters": {
+                "type": "integer"
+              },
+              "first_letter": {
+                "type": "string"
+              },
+              "definition": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

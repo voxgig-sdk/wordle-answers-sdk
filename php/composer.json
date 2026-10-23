@@ -1,0 +1,29 @@
+{
+  "name": "voxgig-sdk/wordle-answers-sdk",
+  "description": "Unofficial generated PHP SDK for the Wordle Answers public API. Not affiliated with or endorsed by the upstream API provider.",
+  "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "wordle-answers"],
+  "homepage": "https://github.com/voxgig-sdk/wordle-answers-sdk",
+  "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/wordle-answers-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/wordle-answers-sdk"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "files": ["wordleanswers_sdk.php"],
+    "classmap": ["core/", "entity/", "feature/", "types/", "utility/", "config.php", "schema.php", "features.php"]
+  },
+  "autoload-dev": {
+    "classmap": ["test/"]
+  }
+}

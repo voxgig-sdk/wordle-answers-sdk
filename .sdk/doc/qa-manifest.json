@@ -1,0 +1,22 @@
+{
+  "files": [
+    "SUMMARY.md"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "A page of answers",
+      "Difficulty rating from 1 to 5, one decimal",
+      "Editorial attribution",
+      "Historical and current NYT Wordle answers with difficulty ratings and progressive hints. Public, unauthenticated, HTTPS GET only. Answers sync at midnight America/`New_York`; dates beyond today return 403.",
+      "Production server",
+      "Progressive hint levels",
+      "Puzzle date (YYYY-MM-DD)",
+      "The most recent answer",
+      "The solution word, uppercase",
+      "Today&#39;s answer and hints",
+      "Weekday name"
+    ]
+  }
+}

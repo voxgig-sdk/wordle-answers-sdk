@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        url: "https://wordlehintstoday.org/wordle-api"
+      }
+      description: "Historical and current NYT Wordle answers with difficulty ratings and progressive hints. Public, unauthenticated, HTTPS GET only. Answers sync at midnight America/New_York; dates beyond today return 403."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://wordlehintstoday.org"
+        }
+      ]
+      summary: "Historical and current NYT Wordle answers with difficulty ratings and progressive hints."
+      title: "Wordle Answers API"
+      version: "1.0.0"
+      website: "https://wordlehintstoday.org"
+    }
+  }
+}
+

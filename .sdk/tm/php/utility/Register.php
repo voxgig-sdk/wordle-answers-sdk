@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+
+// WordleAnswers SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+WordleAnswersUtility::setRegistrar(function (WordleAnswersUtility $u): void {
+    $u->clean = [WordleAnswersClean::class, 'call'];
+    $u->clean_add = [WordleAnswersClean::class, 'add'];
+    $u->clean_explain = [WordleAnswersDone::class, 'clean_explain'];
+    $u->done = [WordleAnswersDone::class, 'call'];
+    $u->make_error = [WordleAnswersMakeError::class, 'call'];
+    $u->feature_add = [WordleAnswersFeatureAdd::class, 'call'];
+    $u->feature_hook = [WordleAnswersFeatureHook::class, 'call'];
+    $u->feature_init = [WordleAnswersFeatureInit::class, 'call'];
+    $u->fetcher = [WordleAnswersFetcher::class, 'call'];
+    $u->make_fetch_def = [WordleAnswersMakeFetchDef::class, 'call'];
+    $u->make_context = [WordleAnswersMakeContext::class, 'call'];
+    $u->make_options = [WordleAnswersMakeOptions::class, 'call'];
+    $u->make_request = [WordleAnswersMakeRequest::class, 'call'];
+    $u->make_response = [WordleAnswersMakeResponse::class, 'call'];
+    $u->make_result = [WordleAnswersMakeResult::class, 'call'];
+    $u->make_point = [WordleAnswersMakePoint::class, 'call'];
+    $u->make_spec = [WordleAnswersMakeSpec::class, 'call'];
+    $u->make_url = [WordleAnswersMakeUrl::class, 'call'];
+    $u->param = [WordleAnswersParam::class, 'call'];
+    $u->prepare_auth = [WordleAnswersPrepareAuth::class, 'call'];
+    $u->prepare_body = [WordleAnswersPrepareBody::class, 'call'];
+    $u->prepare_headers = [WordleAnswersPrepareHeaders::class, 'call'];
+    $u->prepare_method = [WordleAnswersPrepareMethod::class, 'call'];
+    $u->prepare_params = [WordleAnswersPrepareParams::class, 'call'];
+    $u->prepare_path = [WordleAnswersPreparePath::class, 'call'];
+    $u->prepare_query = [WordleAnswersPrepareQuery::class, 'call'];
+    $u->graphql_body = [WordleAnswersGraphql::class, 'body'];
+    $u->graphql_errors = [WordleAnswersGraphql::class, 'errors'];
+    $u->result_basic = [WordleAnswersResultBasic::class, 'call'];
+    $u->result_body = [WordleAnswersResultBody::class, 'call'];
+    $u->result_headers = [WordleAnswersResultHeaders::class, 'call'];
+    $u->transform_request = [WordleAnswersTransformRequest::class, 'call'];
+    $u->transform_response = [WordleAnswersTransformResponse::class, 'call'];
+});

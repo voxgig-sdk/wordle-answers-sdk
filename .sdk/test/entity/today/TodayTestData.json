@@ -1,0 +1,56 @@
+{
+  "existing": {
+    "today": {
+      "TODAY00": {
+        "answer": "s46",
+        "date": "s47",
+        "day_name": "s48",
+        "difficulty": 73,
+        "editor": "s4a",
+        "game": 75,
+        "hints": {},
+        "id": "TODAY00"
+      },
+      "TODAY01": {
+        "answer": "s8c",
+        "date": "s8d",
+        "day_name": "s8e",
+        "difficulty": 143,
+        "editor": "s90",
+        "game": 145,
+        "hints": {},
+        "id": "TODAY01"
+      },
+      "TODAY02": {
+        "answer": "sd2",
+        "date": "sd3",
+        "day_name": "sd4",
+        "difficulty": 213,
+        "editor": "sd6",
+        "game": 215,
+        "hints": {},
+        "id": "TODAY02"
+      }
+    }
+  },
+  "new": {
+    "today": {
+      "today_ref01": {
+        "answer": "s118",
+        "date": "s119",
+        "day_name": "s11a",
+        "difficulty": 283,
+        "editor": "s11c",
+        "game": 285,
+        "hints": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/wordle/today": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

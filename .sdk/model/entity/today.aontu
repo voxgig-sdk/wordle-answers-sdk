@@ -1,0 +1,96 @@
+# Entity: today
+
+main: kit: entity: today: {
+
+  alias: field: {}
+
+  fields: {
+    answer: {
+      h: "Answer"
+      n: "answer"
+      r: false
+      t: "`$STRING`"
+    }
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      t: "`$STRING`"
+    }
+    day_name: {
+      h: "Day Name"
+      n: "day_name"
+      r: false
+      t: "`$STRING`"
+    }
+    difficulty: {
+      h: "Difficulty"
+      n: "difficulty"
+      r: false
+      t: "`$NUMBER`"
+    }
+    editor: {
+      h: "Editor"
+      n: "editor"
+      r: false
+      t: "`$STRING`"
+    }
+    game: {
+      h: "Game"
+      n: "game"
+      r: false
+      t: "`$INTEGER`"
+    }
+    hints: {
+      h: "Hints"
+      n: "hints"
+      r: false
+      sh: "Progressive hint levels"
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "today"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/wordle/today"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/wordle/today"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "wordle"
+            }
+            {
+              lit: "today"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
